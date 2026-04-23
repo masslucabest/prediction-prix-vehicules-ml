@@ -102,6 +102,7 @@ import numpy as np
 import joblib
 import os
 import requests
+import gdown
 
 # =========================
 # 📊 CHARGEMENT DATASET
@@ -145,7 +146,8 @@ def download_model():
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        download_model()
+        url = f"https://drive.google.com/uc?id={FILE_ID}"
+        gdown.download(url, MODEL_PATH, quiet=False)
 
     return joblib.load(MODEL_PATH)
 
